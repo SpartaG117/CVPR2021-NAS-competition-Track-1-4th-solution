@@ -1,7 +1,9 @@
-# AI-Studio-项目标题
+# CVPR2021-NAS-competition-Track-1-4th-solution
 
 ## 项目描述
-简要描述项目
+首先采用权值共享的方式进行采样训练，然后将每层的权值按输出独立成operator的方式，对于相同输出不同的输入共享同一个operator权值。
+采样采用uniform sample的方式，，每采样32个subnet更新一次参数。权值共享训练的stage初始学习率0.1， cosine scheduler, 300epoch, operator训练stage采用固定学习率0.001, 1000epoch.
+
 
 ## 项目结构
 ```
@@ -68,4 +70,12 @@ python merge.py ./checkpoints/op/submission
 
 ```
 bash ./train_gen.sh
+```
+
+## 使用方式 3
+
+线上最终提交版本权值为目录下weigths.pth, 放置于目录./checkpoints/op,可用如下方式进行生成
+
+```
+bash gen.sh
 ```
